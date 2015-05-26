@@ -1,0 +1,47 @@
+$(function () {
+    $('#container').highcharts({
+        chart: {
+        },
+        xAxis: {
+            minPadding: 0.05,
+            maxPadding: 0.05
+        },
+
+
+        tooltip: {
+        formatter: function() {
+            if (this.point.note) {
+                return this.point.note + ' YES';
+            }
+            else {
+                return '';
+            }
+        }},
+        plotOptions: {
+            series: {
+                marker: {
+                    enabled: false
+                }
+            }
+        },
+        series: [{
+            data: [
+                {name: 'Point 1', note: 'Point 1', x:0,y: 29.9, dataLabels: { enabled: true,
+                           formatter: function() {
+                if (this.point.note) {
+                    return this.point.note;
+                }
+                else {
+                    return '';
+                }
+        }                                                 
+                }
+                 , marker: { enabled: true }
+                },
+                {name: 'Point 2', x:1,y: 71.5},
+                {name: 'Point 3', x:3,y: 106.4}
+
+            ]
+        }]
+    });
+});

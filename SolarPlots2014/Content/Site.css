@@ -1,0 +1,322 @@
+﻿body {
+    font-size: .85em;
+    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+    color: #232323;
+    background-color: #fff;
+    margin: 0 0 0 0;
+}
+
+header, footer, nav, section {
+    display: block;
+}
+
+/* Main DIVs */
+DIV.FullPageWidth
+{
+	background-color: rgb(0,44,60);
+    /* IE10 Consumer Preview */ 
+    background-image: -ms-linear-gradient(left, #FFFF55 0%, #FFFFCC 25%, #FFFFCC 75%, #FFFF55 100%);
+
+    /* Mozilla Firefox */ 
+    background-image: -moz-linear-gradient(left, #FFFF55 0%, #FFFFCC 25%, #FFFFCC 75%, #FFFF55 100%);
+
+    /* Opera */ 
+    background-image: -o-linear-gradient(left, #FFFF55 0%, #FFFFCC 25%, #FFFFCC 75%, #FFFF55 100%);
+
+    /* Webkit (Safari/Chrome 10) */ 
+    background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #FFFF55), color-stop(.25, #FFFFCC), color-stop(0.75, #FFFFCC), color-stop(1, #FFFF55));
+
+    /* Webkit (Chrome 11+) */ 
+    background-image: -webkit-linear-gradient(left, #FFFF55 0%, #FFFFCC 25%, #FFFFCC 75%, #FFFF55 100%);
+
+    /* W3C Markup, IE10 Release Preview */ 
+    background-image: linear-gradient(to right, #FFFF55 0%, #FFFFCC 25%, #FFFFCC 75%, #FFFF55 100%);
+
+}
+
+DIV.TopBar {
+    height: 42px;
+    text-align:center;
+    padding: 10px 0 10px 0;
+    /* IE10 Consumer Preview */ 
+    background-image: -ms-linear-gradient(top, #FFFF6E 0%, #FFFF6E 20%, #FFC43B 100%);
+
+    /* Mozilla Firefox */ 
+    background-image: -moz-linear-gradient(top, #FFFF6E 0%, #FFFF6E 20%, #FFC43B 100%);
+
+    /* Opera */ 
+    background-image: -o-linear-gradient(top, #FFFF6E 0%, #FFFF6E 20%, #FFC43B 100%);
+
+    /* Webkit (Safari/Chrome 10) */ 
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #FFFF6E), color-stop(0.2, #FFFF6E), color-stop(1, #FFC43B));
+
+    /* Webkit (Chrome 11+) */ 
+    background-image: -webkit-linear-gradient(top, #FFFF6E 0%, #FFFF6E 20%, #FFC43B 100%);
+
+    /* W3C Markup, IE10 Release Preview */ 
+    background-image: linear-gradient(to bottom, #FFFF6E 0%, #FFFF6E 20%, #FFC43B 100%);
+
+}
+
+DIV.TopBar table 
+{
+    margin: 0 auto; 
+    text-align: left;
+}
+DIV.TopBar td {
+    vertical-align: middle;
+    text-align: left;
+    font-style: italic;
+    font-weight: bold;
+
+    }
+DIV.TopBar td:nth-child(2) {
+    padding-left: 1.5cm;
+    width: 260px;
+    }
+
+DIV.ContentArea {
+	background-color: #FFFFFF;
+	width: 1250px;
+	margin:0 auto 0 auto;
+}
+
+DIV.LeftSideArea {
+	background-color: #FFFFFF;
+	width: 200px;
+    float: left;
+    padding: 10px 0px 8px 12px;
+}
+DIV.LeftSideArea p:first-child {
+    font-style: italic;
+    font-weight: bold;
+}
+
+DIV.RightSideArea {
+	background-color: #FFFFFF;
+	width: 200px;
+    float: left;
+    padding: 8px 10px 8px 10px;
+}
+DIV.RightSideArea p {
+    font-weight: bold;
+}
+DIV.RightSideArea p:nth-child(n+2) {
+    margin-bottom: 2px;
+}
+DIV.RightSideArea ol {
+    margin: 0px;
+    padding: 0px;
+}
+DIV.RightSideArea ol li:nth-child(2) div:nth-child(3), DIV.RightSideArea ol li:nth-child(2) div:nth-child(7) {
+    width: 100%;
+    text-align: center;
+}
+DIV.RightSideArea ol li:nth-child(2) div:nth-child(5) {
+    padding-top: 12px;
+}
+DIV.MainArea {
+	background-color: #FFFFFF;
+	width: 760px;
+	/*margin:0 auto 0 auto;*/
+    float: left;
+    padding: 12px 20px 0 20px;
+}
+
+/* END Main DIVs */
+
+.smallTextbox {
+    width: 20px;
+}
+
+.mediumTextbox {
+    width: 50px;
+}
+
+.wideTextbox {
+    width: 80px;
+}
+.extraWideTextbox {
+    width: 120px;
+}
+
+.commonParameters {
+    border: solid medium;
+    border-color: rgb(52, 62, 225); 
+    background-color: rgb(248,250,255);
+}
+.commonParameters p {
+    text-align: center;
+
+}
+
+/* Styles for elements */
+#showHideMap {
+    font-weight: bold;
+    font-size: 16px;
+    color: #00F;
+    text-align: center;
+}
+#showHideMap:hover {
+    color:#33B;
+    text-decoration: underline;
+}
+
+#TablePlotOptions {
+    
+}
+#TablePlotOptions td {
+    vertical-align: top;
+}
+#TablePlotOptions td:first-child {
+    padding: 0 8px 0 0;
+}
+
+#TablePlotOptions td:last-child {
+    padding: 0 0 0 8px;
+}
+
+#TablePlotOptions td p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+#TablePlotOptions table {
+    border-spacing: 0px;
+
+}
+
+#TablePlotOptions table table td:first-child {
+    /*border: solid thin;
+    border-color: red;*/
+    text-align: right;
+    padding-left: 0;
+    border-bottom: none;
+
+}
+#TablePlotOptions table table td {
+    /*border: solid thin;
+    border-color: red;*/
+    text-align: center;
+    padding: 0 4px 0 4px;
+    border-bottom: thin solid;
+    border-color: #ccc;
+}
+/* need the next item to override the style above*/
+#TablePlotOptions table table td:last-child {
+    padding: 0 4px 0 4px;
+}
+
+.plotTypeHeading {
+    font-weight: bold;
+    color: #33B;
+}
+
+.mapWidth {
+    width: 750px;
+}
+.tableWidth {
+    width: 756px;
+}
+
+.multipleTable td:last-child {
+    vertical-align: bottom !important;
+    text-align: center;
+}
+
+.tableTabularData {
+    border: thin solid;
+    border-spacing: 0px;
+    border-color: #DDD;
+}
+.tableTabularData td {
+    border: thin solid;
+    border-color: #DDD;
+    padding: 0 4px 0 6px;
+}
+.tableTabularData tr td:first-child {
+    width: 100px;
+}
+
+.tableTabularData tr:first-child td {
+    background-color: rgb(248, 250, 255);
+    font-weight: bold;
+    border-bottom: medium black;
+}
+.tableTabularData tr:nth-child(n+1) td:first-child {
+    text-align: left;
+}
+.tableTabularData tr:nth-child(n+1) td:nth-child(n+2) {
+    text-align: center;
+}
+
+.welcome {
+background-color: #ffc;
+text-align:center;
+padding: 4px 0 4px 0;
+}
+
+/* Styles for basic forms
+-----------------------------------------------------------*/
+fieldset {
+    border: 1px solid #ddd;
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
+}
+
+legend {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+textarea {
+    min-height: 75px;
+}
+
+.editor-label {
+    margin: 1em 0 0 0;
+}
+
+.editor-field {
+    margin: 0.5em 0 0 0;
+}
+
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error {
+    color: #f00;
+    margin: 4px 0 4px 0;
+}
+
+.field-validation-error-heading {
+    color: #f00;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #f00;
+    background-color: #fee;
+}
+
+.validation-summary-errors {
+    font-weight: bold;
+    color: #f00;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+/* END Styles for validation helpers
+-----------------------------------------------------------*/
+
+.spinner {
+    width: 100%;
+    text-align: center;
+
+}

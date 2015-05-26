@@ -1,0 +1,176 @@
+﻿@{
+    ViewBag.Title = "Plot the sun's position";
+}
+
+@section head {
+    <script src="/Scripts/highcharts.js"></script>
+
+}
+
+<div class="FullPageWidth">
+    <div class="TopBar">
+        <div>
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    <td><img src="@Url.Content("~/images/solar_plots_logo_2014_trimmed.png")" /></td>
+                    <td>Plot the position of the sun at any location in the continental United States</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="ContentArea">
+        <div class="LeftSideArea">
+            @Html.Partial("_ViewSwitcher")
+            <p>Welcome to the new site!</p>
+            <p>This web site was totally rebuilt using up-to-date technology in May 2014. The new site name is SunPlots.com, and requests to the original site SolarPlots.info (launched in 2004) transfer to this site. New features include a clickable map (with more clickable points planned), faster plotting and plots which allow client mouseover of individual plotting points.</p>
+            <p>The <a href="http://solarplots.info/solarplotsoriginal/default.aspx">original web site</a> can still be viewed.</p>
+            <p style="color: #F44; font-weight:bold;">This site does not work in Safari browsers</p>
+            <p>Webmaster: Oscar Slotboom<br />Location: Dallas, TX<br /><a href="mailto:webmaster@sunplots.com">webmaster@SunPlots.com</a></p>
+            
+        </div>
+
+        <div class="MainArea">
+
+            <div class="commonParameters mapWidth">
+                <div id="showHideMap">Hide clickable map</div>
+                <div id="mapContainer">
+                    <embed id="clickableMap" src="/Images/Map_of_USA_States_with_names_grouped.svg" title="USA Map" type="image/svg+xml" />
+                </div>
+
+                <p>
+                    <span id="city" data-bind="text: City"></span> &nbsp;&nbsp;
+                    Latitude <input type="text" id="latitude" name="latitude" data-bind="value: Latitude" class="mediumTextbox" /> North
+                    &nbsp;&nbsp;  Longitude <input type="text" id="longitude" name="longitude" data-bind="value: Longitude" class="mediumTextbox" required /> West
+                    &nbsp;&nbsp; Timezone <select data-bind="options: TimezoneOptions, value: SelectedTimezoneOption, optionsCaption: 'Select' "></select>
+
+                    <a id="a_more_cities" href="" onclick="javascript:NewWindow('http://www.realestate3d.com/gps/latlong.htm',150,100);">more cities</a>
+                </p>
+                <p><input type="checkbox" data-bind="checked: SingleDayNoDSTCheckbox" /> Do NOT observe daylight saving time (for Arizona, or viewing plots without the time steps)    </p>
+            </div>
+
+            <table id="TablePlotOptions" class="tableWidth" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td>
+                        <p class="plotTypeHeading">Single Day Plot</p>
+                        <!--Options for Single Day Plot-->
+                        <p>Date: <input type="text" id="singleDayPicker" size="30" data-bind="value: SingleDayDate" class="extraWideTextbox"> </p>
+                        <p>
+                            From: <input data-bind="value: SingleDayFrom" disabled="disabled" class="wideTextbox" />
+                            &nbsp;&nbsp;
+                            To: <input data-bind="value: SingleDayTo" disabled="disabled" class="wideTextbox" />
+                        </p>
+
+                        <p>
+                            <input type="button" value="Plot" onclick="GetSolarDataJson('singleday', SingleDayPlotCallback)"> &nbsp;
+                            <label><input type="radio" value="AltitudeAzimuth" data-bind="checked: RadioSelectedOptionValue, click: plotshowClick" />Altitude and Azimuth</label>
+                            <label><input type="radio" value="Altitude" data-bind="checked: RadioSelectedOptionValue, click: plotshowClick" />Altitude</label>
+                            <label><input type="radio" value="Azimuth" data-bind="checked: RadioSelectedOptionValue, click: plotshowClick" />Azimuth</label>
+                        </p>
+                        <p>
+                            <input type="button" value="Tabular Data" onclick="LoadTabularData('singleday')" /> Time increment: <input data-bind="    value: SingleDayTabularTimeIncrement" class="smallTextbox" />
+                        </p>
+
+                    </td>
+                    <td>
+                        <p class="plotTypeHeading">Multiple Day Plot</p>
+                        <!--Options for Multiple Day Plot-->
+                        <label><input type="radio" value="MultipleYear" data-bind="checked:MultipleTimespanSelectedOptionValue" />This year</label> <label><input type="radio" value="MultipleMonth" data-bind="checked:MultipleTimespanSelectedOptionValue" />This month</label>
+                        <p>
+                            <input type="radio" value="MultipleSet" data-bind="checked:MultipleTimespanSelectedOptionValue" />From: <input id="multipleDayPickerStart" data-bind="value: MultipleDayFrom, event: { change: SelectMultipleSet }" class="extraWideTextbox" />
+                            &nbsp;
+                            To: <input id="multipleDayPickerEnd" data-bind="value: MultipleDayTo, event: { change: SelectMultipleSet }" class="extraWideTextbox" />
+                        </p>
+                        <p>
+                            <table class="multipleTable">
+                                <tr>
+                                    <td>
+                                        <table>
+                                            <tr>
+                                                <td></td>
+                                                <td>Time</td>
+                                                <td>Altitude</td>
+                                                <td>Azimuth</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Sunrise</td>
+                                                <td><input type="radio" value="SunriseTime" data-bind="checked:MultiplePlot, click: multiplePlotClick" /></td>
+                                                <td></td>
+                                                <td><input type="radio" value="SunriseAzimuth" data-bind="checked:MultiplePlot, click: multiplePlotClick" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Sunset</td>
+                                                <td><input type="radio" value="SunsetTime" data-bind="checked:MultiplePlot, click: multiplePlotClick" /></td>
+                                                <td></td>
+                                                <td><input type="radio" value="SunsetAzimuth" data-bind="checked:MultiplePlot, click: multiplePlotClick" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Solar Noon</td>
+                                                <td><input type="radio" value="SolarNoonTime" data-bind="checked:MultiplePlot, click: multiplePlotClick" /></td>
+                                                <td><input type="radio" value="SolarNoonAltitude" data-bind="checked:MultiplePlot, click: multiplePlotClick" /></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Length of Day</td>
+                                                <td><input type="radio" value="LengthOfDay" data-bind="checked:MultiplePlot, click: multiplePlotClick" /></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td>
+                        <p><input type="button" value="Plot" onclick="GetSolarDataJson('multipleday', MultipleDayPlotCallback)"></p>
+
+                        <p><input type="button" value="Tabular Data" onclick="LoadTabularData('multipleday')" /></p>
+                    </td>
+                </tr>
+            </table>
+
+            </p>
+            </td>
+
+            </tr>
+
+            </table>
+
+            <div data-bind="text: ErrorListHeading" class="field-validation-error-heading"></div>
+            <ul data-bind="foreach: errorList" class="field-validation-error">
+                <li>
+                    <span data-bind="text: errorText"> </span>
+                </li>
+            </ul>
+            <div id="loader" class="spinner" style="display:none;"><img src="@Url.Content("~/images/spinner-50px.GIF")" alt="SPINNER" /></div>
+            <div id="tabularDataContainer"></div>
+            <div id="plotContainer" style="width:800px; height:500px; position:relative; left: -20px;"></div>
+        </div> <!--Main Area-->
+
+        <div class="RightSideArea">
+            <p>Quick Start Instructions</p>
+            <ol>
+                <li>Click your location on the map or enter your coordinates and time zone</li>
+                <li><div class="plotTypeHeading">Single Day Plot</div>
+                <div>For today, click the <button type="button">Plot</button> or the <button type="button">Tabular Data</button> button </div>
+                 <div class ="plotTypeHeading">OR</div>
+                 <div>Select another date and/or click the desired radio button for the plot fields, then click <button type="button">Plot</button> or <button type="button">Tabular Data</button></div>
+                 <div class="plotTypeHeading">Multiple Day Plot</div>
+                    <div>For sunset for this year, click the <button type="button">Plot</button> or the <button type="button">Tabular Data</button> button </div>
+                    <div class="plotTypeHeading">OR</div>
+                    <div>Set the date range and click the radio button for the desired field, then click <button type="button">Plot</button> or <button type="button">Tabular Data</button></div>
+                </li>
+
+            </ol>
+            <p>&nbsp;</p>
+            <p>Azimuth Angles</p>
+            <div>Due north: 0&deg;</div>
+            <div>Due east: 90&deg;</div>
+            <div>Due south (solar noon): 180&deg;</div>
+            <div>Due west: 270&deg;</div>
+            <p>Solar Noon</p>
+            <div>When the sun is at its highest altitude in the sky. This occurs when the azimuth is due south (180&deg;). In most places in the U.S. it is always after 12 noon. </div>
+            <br />
+        </div>
+    </div> <!-- ContentArea -->
+    <br style="clear:both;"/>
+</div> <!-- FullPageWidth -->
+@section scripts {
+    <script src="/Scripts/app/SolarPlots.js" type="text/javascript"></script> 
+}

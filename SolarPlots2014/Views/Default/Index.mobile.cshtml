@@ -1,0 +1,146 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.Mobile.cshtml";
+}
+
+
+@section HeadJavaScript {
+    <link rel="stylesheet" href="~/content/SunPlotsMobile.css" />
+}
+<div class="heading-background">
+    <img src="@Url.Content("~/images/solar_plots_logo_2014_mobile.png")" />
+</div>
+<div class="container tcenter">
+    <div class="row">
+
+        <div class="col-xs-6">
+            <button type="button" id="btn-major-cities" class="btn btn-md btn-warning red-border">Show large cities</button>
+        </div>
+        <div class="col-xs-6">
+            @Html.Partial("_ViewSwitcher")
+        </div>
+    </div>
+</div>
+<div class="container">
+
+    <ul id="city-select" class="list-group">
+        <li class="list-group-item" data-city="Dallas, TX" data-latitude="32.78" data-longitude="96.80" data-timezone="Central">Dallas, TX</li>
+        <li class="list-group-item" data-city="Houston, TX" data-latitude="29.76" data-longitude="95.36" data-timezone="Central">Houston, TX</li>
+        <li class="list-group-item" data-city="Austin, TX" data-latitude="30.25" data-longitude="97.75" data-timezone="Central">Austin, TX</li>
+        <li class="list-group-item" data-city="Atlanta, GA" data-latitude="33.76" data-longitude="84.39" data-timezone="Eastern">Atlanta, GA</li>
+        <li class="list-group-item" data-city="Boston, MA" data-latitude="42.36" data-longitude="71.06" data-timezone="Eastern">Boston, MA</li>
+        <li class="list-group-item" data-city="Chicago, IL" data-latitude="41.88" data-longitude="87.63" data-timezone="Central">Chicago, IL</li>
+        <li class="list-group-item" data-city="Cleveland, OH" data-latitude="41.48" data-longitude="81.67" data-timezone="Eastern">Cleveland, OH</li>
+        <li class="list-group-item" data-city="Denver, CO" data-latitude="39.74" data-longitude="104.98" data-timezone="Mountain">Denver, CO</li>
+        <li class="list-group-item" data-city="Kansas City, MO" data-latitude="39.10" data-longitude="94.57" data-timezone="Central">Kansas City, MO</li>
+        <li class="list-group-item" data-city="Los Angeles, CA" data-latitude="34.1" data-longitude="118.25" data-timezone="Pacific">Los Angeles, CA</li>
+        <li class="list-group-item" data-city="Nashville, TN" data-latitude="36.17" data-longitude="86.78" data-timezone="Central">Nashville, TN</li>
+        <li class="list-group-item" data-city="New Orleans, LA" data-latitude="29.97" data-longitude="90.05" data-timezone="Central">New Orleans, LA</li>
+        <li class="list-group-item" data-city="New York, NY" data-latitude="40.78" data-longitude="73.97" data-timezone="Eastern">New York, NY</li>
+        <li class="list-group-item" data-city="Orlando, FL" data-latitude="28.42" data-longitude="81.32" data-timezone="Eastern">Orlando, FL</li>
+        <li class="list-group-item" data-city="Philadelphia, PA" data-latitude="39.95" data-longitude="75.17" data-timezone="Eastern">Philadelphia, PA</li>
+        <li class="list-group-item" data-city="Phoenix, AZ" data-latitude="33.45" data-longitude="112.07" data-timezone="Mountain">Phoenix, AZ</li>
+        <li class="list-group-item" data-city="San Diego, CA" data-latitude="32.72" data-longitude="117.16" data-timezone="Pacific">San Diego, CA</li>
+        <li class="list-group-item" data-city="San Jose, CA" data-latitude="37.33" data-longitude="121.9" data-timezone="Pacific">San Jose, CA</li>
+        <li class="list-group-item" data-city="Seattle, WA" data-latitude="47.61" data-longitude="122.33" data-timezone="Pacific">Seattle, WA</li>
+        <li class="list-group-item" data-city="Washington DC" data-latitude="38.90" data-longitude="77.04" data-timezone="Eastern">Washington DC</li>
+    </ul>
+
+    <div class="row">
+        <div class="col-xs-5">Location</div>
+        <div class="col-xs-7 boldtext" data-bind="text: City"></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-5">Latitude</div>
+        <div class="col-xs-4"><input type="text" id="Latitude" class="form-control" placeholder="Latitude" data-bind="value: Latitude" size="7"></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-5">Longitude</div>
+        <div class="col-xs-4"><input type="text" id="Longitude" class="form-control" placeholder="Longitude" data-bind="value: Longitude" size="7"></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-5">Time zone</div>
+        <div class="col-xs-7">
+            <select id="TimeZone" data-bind="options: TimezoneOptions, value: SelectedTimezoneOption, optionsCaption: 'Select' "></select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-5">Ignore Daylight Saving (AZ)</div>
+        <div class="col-xs-3"><input id="IgnoreDaylightSaving" type="checkbox" class="checkbox-lg" data-bind="checked: SingleDayNoDSTCheckbox" /></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-5">Date</div>
+        <div class="col-xs-7">
+
+            <div class='input-group date' id='datetimepicker1'>
+                <input type='text' class="form-control" />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="tcenter">
+        <button type="button" id="btn-compute" class="btn btn-md btn-warning red-border">
+            Get data
+        </button>
+        &nbsp;
+        <span id="loader" style="display:none;"><img src="@Url.Content("~/images/spinner-32px-t.GIF")" alt="SPINNER" /></span>
+
+    </div>
+
+
+
+    <div id="results">
+        <div class="row">
+            <div class="col-xs-6">Sunrise</div>
+            <div class="col-xs-5" data-bind="text: Sunrise"></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6">Sunset</div>
+            <div class="col-xs-5" data-bind="text: Sunset"></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6">Solar Noon</div>
+            <div class="col-xs-5" data-bind="text: SolarNoon"></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6">Solar Noon Altitude</div>
+            <div class="col-xs-5" data-bind="text: SolarNoonAltitude"></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6">Length of Day, Hours</div>
+            <div class="col-xs-5" data-bind="text: LengthOfDayHours"></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6">Sunrise Azimuth</div>
+            <div class="col-xs-5" data-bind="text: SunriseAzimuth"></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6">Sunset Azimuth</div>
+            <div class="col-xs-5" data-bind="text: SunsetAzimuth"></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6">Time for Azimuth Due East (90&deg;)</div>
+            <div class="col-xs-5" data-bind="text: AzimuthDueEast"></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6">Time for Azimuth Due West (270&deg;)</div>
+            <div class="col-xs-5" data-bind="text: AzimuthDueWest"></div>
+        </div>
+        <div class="info">
+            <b>Azimuth: </b> 0&deg;=due north, 90&deg;=due east, 180&deg;=due south(solar noon), 270&deg;=due west
+            <br />
+            <b>Solar Noon: </b>The middle of the day based on daylight; the sun is due south and at its maximum altitude
+        </div>
+    </div>
+</div> <!-- Container -->
+    
+
+    @section scripts {
+        <script src="~/Scripts/bootstrap.min.js"></script>
+        <script src="~/Scripts/moment.min.js"></script>
+        <script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+        <script src="/Scripts/app/SolarPlotsMobile.js" type="text/javascript"></script>
+    }

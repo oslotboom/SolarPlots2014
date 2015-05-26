@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "_Layout.Mobile.cshtml";
+}
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Scripts.Render("~/bundles/jquery")
+
+    @Scripts.Render("~/bundles/knockout")
+    <link rel="stylesheet" href="~/content/bootstrap.css" />
+    <link rel="stylesheet" href="~/content/bootstrap-datetimepicker.css" />
+
+    @Scripts.Render("~/bundles/modernizr")
+    
+    <link rel="icon" href="~/images/favicon.ico" type="image/x-icon" />
+    <meta name="description" content="Plot the sun's angle position on the horizon for any location in the United States">
+    <meta name="keywords" content="sun, solar, astronomy, plot, photography, sundial">
+    @RenderSection("head", required: false)
+    @RenderSection("HeadJavaScript", required: false)
+</head>
+<body>
+    <div>
+        @RenderBody()
+
+    </div><!-- /page -->
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+

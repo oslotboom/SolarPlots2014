@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "SingleDayTabularData";
+}
+@model  List<SolarPlots.Classes.DateTimePlotData>
+
+<table class="tableTabularData" cellpadding="0" cellspacing="0">
+    <tr>
+        <td>Time</td>
+        <td>Altitude</td>
+        <td>Azimuth</td>
+        <td>Point Note</td>
+
+    </tr>
+
+    @foreach (SolarPlots.Classes.DateTimePlotData item in Model)
+    {
+        <tr>
+            <td>
+                @item.PointDateTime.ToString("h:mm:ss tt")
+            </td>
+            <td>
+                @item.Altitude.ToString()
+            </td>
+            <td>@item.Azimuth</td>
+            <td>
+                @*@{if (!String.IsNullOrEmpty(item.AzimuthPointInformation))
+                    item.AzimuthPointInformation.ToString();}*@
+                @{
+        string pointInformation = "";
+        if (!String.IsNullOrEmpty(item.AltitudePointInformation))
+        {
+            pointInformation = "Altitude: " + item.AltitudePointInformation;
+        }
+        if (!String.IsNullOrEmpty(item.AzimuthPointInformation))
+        {
+            if (!String.IsNullOrEmpty(pointInformation))
+            {
+                pointInformation += "; ";
+            }
+            pointInformation += "Azimuth: " + item.AzimuthPointInformation.ToString();
+        }
+        <span>@pointInformation</span>;
+                }
+            </td>
+        </tr>
+
+    }
+
+</table>
+
+
+

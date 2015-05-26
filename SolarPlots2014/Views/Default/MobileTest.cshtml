@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "MobileTest";
+    Layout = "~/Views/Shared/_Layout.Mobile.cshtml";
+}
+
+<h2>MobileTest</h2>
+input type="button"
+<input type="button" id="btn-compute" class="btn btn-default btn-lg" value="Compute" onclick="javascript: alert('test');">
+</input>
+
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#btn-compute").click(function () {
+                alert("btn click");
+            });
+
+        });
+
+
+    </script>
+}

@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/themes/base/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")    
+    @*@Scripts.Render("~/bundles/jqueryval")*@
+    @Scripts.Render("~/bundles/knockout")
+    <link rel="icon" href="~/images/favicon.ico" type="image/x-icon" />
+    <meta name="description" content="Plot the sun's angle position on the horizon for any location in the United States">
+    <meta name="keywords" content="sun, solar, astronomy, plot, photography, sundial">
+    @RenderSection("head", required: false)
+
+</head>
+<body>
+    @RenderBody()
+
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

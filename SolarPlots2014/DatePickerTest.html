@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" media="screen" href="content/bootstrap.min.css" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="content/bootstrap-datetimepicker.css" />
+</head>
+<body>
+
+
+
+        <div class="container">
+            <div class="row">
+                <div class='col-sm-6'>
+                    <div class="form-group">
+                        <div class='input-group date' id='datetimepicker1'>
+                            <input type='text' class="form-control" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    <script type="text/javascript" src="scripts/jquery-1.9.0.min.js"></script>
+
+        <script type="text/javascript" src="scripts/bootstrap.min.js"></script>
+        <script type="text/javascript" src="scripts/moment.min.js"></script>
+        <script type="text/javascript" src="scripts/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript">
+    $(function () {
+        $('#datetimepicker1').datetimepicker();
+    });
+    </script>
+
+</body>
+</html>
